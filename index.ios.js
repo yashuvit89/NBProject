@@ -1,5 +1,5 @@
 /**
- * Sample React Native App
+ * Nobroker Client App
  * https://github.com/facebook/react-native
  * @flow
  */
@@ -8,31 +8,33 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
+  NavigatorIOS,
   Text,
   View
 } from 'react-native';
+import SearchPage from './SearchPage'
 
 class NBProject extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+      <View style={styles.container1}>
+        <SearchPage/>
       </View>
+      // <NavigatorIOS
+      //   style={styles.container}
+      //   initialRoute={{
+      //     title: 'Home Page',
+      //     component: SearchPage,
+      //   }}/>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1
+  },
+  container1: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -47,7 +49,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
-  },
+  }
 });
 
 AppRegistry.registerComponent('NBProject', () => NBProject);
