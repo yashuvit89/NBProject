@@ -1,8 +1,3 @@
-/**
- * Nobroker Client App
- * https://github.com/facebook/react-native
- * @flow
- */
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -35,8 +30,9 @@ class NBProject extends Component {
     fetch(REQUEST_URL)
       .then((response) => response.json())
       .then((responseData) => {
+        console.log(responseData);
         this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(responseData.data),
+          dataSource: this.state.dataSource.cloneWithRows(responseData.movies),
           loaded: true,
         });
       })
@@ -47,27 +43,22 @@ class NBProject extends Component {
     return (
       <View style={styles.container}>
         <Text>
-          Loading properties...
+          Loading Nobroker ...
         </Text>
       </View>
     );
   }
 
-  renderProperty(property) {
-    const imageUri = "http://d3snwcirvb4r88.cloudfront.net/";
-    const noPicUri = imageUri + "static/img/nopic_1bhk.jpg";
-
-    const propertyImageUri = property.photos.length > 0 ? imageUri + "images/" +
-      property.id + "/" +property.photos[0].imagesMap.thumbnail : noPicUri;
+  renderMovie(movie) {
     return (
       <View style={styles.container}>
         <Image
-          source={{uri: propertyImageUri}}
+          source={{uri: movie.posters.thumbnail}}
           style={styles.thumbnail}
         />
         <View style={styles.rightContainer}>
-          <Text style={styles.title}>{property.title}</Text>
-          <Text style={styles.year}>{property.nbLocality}</Text>
+          <Text style={styles.title}>{movie.title}</Text>
+          <Text style={styles.year}>{movie.year}</Text>
         </View>
       </View>
     );
@@ -81,7 +72,7 @@ class NBProject extends Component {
     return (
       <ListView
         dataSource={this.state.dataSource}
-        renderRow={this.renderProperty}
+        renderRow={this.renderMovie}
         style={styles.listView}
       />
     );
