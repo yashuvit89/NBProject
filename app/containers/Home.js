@@ -19,6 +19,9 @@ class Home extends Component {
   }
 
   searchPressed() {
+    // console.log("Search Pressed");
+    // this.props.fetchRecipes('bacon, cucumber, bannana');
+
     this.setState({ searching: true })
     this.props.fetchRecipes(this.state.ingredientsInput).then( (res) => {
       this.setState({searching: false })
@@ -30,33 +33,70 @@ class Home extends Component {
   }
 
   render() {
+    console.log(this.recipes());
     return (
       <View style={styles.scene}>
         <View style={styles.searchSection}>
-          <TextInput style={styles.searchInput}
-            returnKeyType="search"
-            placeholder="Ingredients (comma delimited)"
-            onChangeText={(ingredientsInput) => this.setState({ingredientsInput})}
-            value={this.state.ingredientsInput}
-          />
           <TouchableHighlight style={styles.searchButton} onPress={ () => this.searchPressed() }>
-            <Text>Fetch Recipes</Text>
+            <Text>Fetch Properties</Text>
           </TouchableHighlight>
         </View>
-        <ScrollView style={styles.scrollSection} >
-          {!this.state.searching && this.recipes().map((recipe) => {
-            return <TouchableHighlight key={recipe.id}  style={styles.searchButton} onPress={ () => this.props.navigate({ key: 'Detail', id: recipe.id}) }>
-            <View>
-              <Image source={ { uri: recipe.thumbnail } } style={appStyle.resultImage} />
-              <Text style={ appStyle.resultText } >{recipe.title}</Text>
-            </View>
-          </TouchableHighlight>
-          })}
-          {this.state.searching ? <Text>Searching...</Text> : null }
-        </ScrollView>
+       <ScrollView style={styles.scrollSection} >
+         {!this.state.searching && this.recipes().map((property) => {
+           return <TouchableHighlight key={property.id}  style={styles.searchButton} onPress={ () => this.props.navigate({ key: 'Detail', id: property.id}) }>
+           <View>
+              <Text style={styles.resultText}>{property.title}</Text>
+              <Text style={styles.resultText}>{property.nbLocality}</Text>
+             <Image source={ {uri: "http://d3snwcirvb4r88.cloudfront.net/" + "static/img/nopic_1bhk.jpg"} } style={styles.resultImage} />
+           </View>
+         </TouchableHighlight>
+         })}
+         {this.state.searching ? <Text>Searching...</Text> : null }
+       </ScrollView>
+
       </View>
     )
   }
+
+  // <ScrollView style={styles.scrollSection}>
+  //   {!this.state.searching && this.recipes().map((property) => {
+  //     return (<View key={property.id}>
+  //       <Text style={styles.resultText}>{property.title}</Text>
+  //       <Text style={styles.resultText}>{property.nbLocality}</Text>
+  //       <Image source={ {uri: "http://d3snwcirvb4r88.cloudfront.net/" + "static/img/nopic_1bhk.jpg"} } style={styles.resultImage} />
+  //     </View>)
+  //   })}
+  //   {this.state.searching ? <Text>Searching...</Text> : null}
+  // </ScrollView>
+
+  // render() {
+  //   return (
+  //     <View style={styles.scene}>
+  //       <View style={styles.searchSection}>
+  //         <TextInput style={styles.searchInput}
+  //           returnKeyType="search"
+  //           placeholder="Ingredients (comma delimited)"
+  //           onChangeText={(ingredientsInput) => this.setState({ingredientsInput})}
+  //           value={this.state.ingredientsInput}
+  //         />
+  //         <TouchableHighlight style={styles.searchButton} onPress={ () => this.searchPressed() }>
+  //           <Text>Fetch Recipes</Text>
+  //         </TouchableHighlight>
+  //       </View>
+  //       <ScrollView style={styles.scrollSection} >
+  //         {!this.state.searching && this.recipes().map((recipe) => {
+  //           return <TouchableHighlight key={recipe.id}  style={styles.searchButton} onPress={ () => this.props.navigate({ key: 'Detail', id: recipe.id}) }>
+  //           <View>
+  //             <Image source={ { uri: recipe.thumbnail } } style={appStyle.resultImage} />
+  //             <Text style={ appStyle.resultText } >{recipe.title}</Text>
+  //           </View>
+  //         </TouchableHighlight>
+  //         })}
+  //         {this.state.searching ? <Text>Searching...</Text> : null }
+  //       </ScrollView>
+  //     </View>
+  //   )
+  // }
 }
 
 const styles = StyleSheet.create({
@@ -80,6 +120,14 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 0.7,
   },
+  resultImage: {
+    height: 150,
+  },
+  resultText: {
+    // backgroundColor: '#000',
+    // color: '#FFF',
+    height: 20,
+  }
 });
 
 function mapStateToProps(state) {

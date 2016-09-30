@@ -29,42 +29,38 @@ const {
 
 class AppContainer extends Component {
 
-  // constructor(props: any, context: any) {
-  //   super(props, context);
-  //   this._render = this._render.bind(this);
-  //   this._renderScene = this._renderScene.bind(this);
+  constructor(props: any, context: any) {
+    super(props, context);
+    this._render = this._render.bind(this);
+    this._renderScene = this._renderScene.bind(this);
+  }
+  // constructor(props){
+  //   super(props);
   // }
-  constructor(props){
-    super(props);
-    this.state = { recipeCount: 0 }
-  }
 
-  incrementRecipeCount() {
-    this.setState({recipeCount: this.state.recipeCount+1});
-  }
-
-  addRecipe() {
-    this.props.addRecipe();
-  }
+  // addRecipe() {
+  //   this.props.addRecipe();
+  // }
 
   render() {
    return (
-     <View>
-       <Text style={{marginTop: 20}}>
-         Enter Location
-       </Text>
-       <AutoComplete />
-       <Text style={{marginTop: 20}}>
-         Inside App container! Recipe Count: {this.state.recipeCount}
-       </Text>
-       <TouchableHighlight onPress={() => {this.addRecipe() }}>
-         <Text>Add recipe</Text>
-       </TouchableHighlight>
-     </View>
-      // <NavigationTransitioner
-      //   navigationState={this.props.navigationState}
-      //   render={this._render}
-      // />
+    //  <Home {...this.props} />
+    //  <View>
+    //    <Text style={{marginTop: 20}}>
+    //      Enter Location
+    //    </Text>
+    //    <AutoComplete />
+    //    <Text style={{marginTop: 20}}>
+    //      Inside App container! Recipe Count: {this.props.recipeCount}
+    //    </Text>
+    //    <TouchableHighlight onPress={() => {this.addRecipe() }}>
+    //      <Text>Add recipe</Text>
+    //    </TouchableHighlight>
+    //  </View>
+      <NavigationTransitioner
+        navigationState={this.props.navigationState}
+        render={this._render}
+      />
     );
   }
 
@@ -101,7 +97,7 @@ class SceneContainer extends Component {
       styles.scene,
       NavigationPagerStyleInterpolator.forHorizontal(this.props),
     ];
-    let Scene = null;
+    let Scene = Detail;
     if (this.props.scene.route.key === 'ApplicationTabs') { Scene = ApplicationTabs }
     if (this.props.scene.route.key === 'Detail') { Scene = Detail }
     return  (
@@ -130,9 +126,11 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   return {
-    navigationState: state.navigationState
+    navigationState: state.navigationState,
+    recipeCount: state.recipeCount
   };
 }
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
+// export default connect((state) => { return {} }, mapDispatchToProps)(AppContainer);
