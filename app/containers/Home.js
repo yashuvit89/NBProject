@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReactNative from 'react-native';
 import { appStyle } from '../styles';
+import AutoComplete from './components/Autocomplete1';
+import PropertyListItem from './components/PropertyListItem';
 const {
   ScrollView,
   View,
@@ -33,27 +35,17 @@ class Home extends Component {
   }
 
   render() {
-    console.log(this.recipes());
     return (
       <View style={styles.scene}>
-        <View style={styles.searchSection}>
-          <TouchableHighlight style={styles.searchButton} onPress={ () => this.searchPressed() }>
-            <Text>Fetch Properties</Text>
-          </TouchableHighlight>
-        </View>
-       <ScrollView style={styles.scrollSection} >
+        <AutoComplete style={styles.searchSection} { ...this.props }/>
+        <ScrollView style={styles.scrollSection} >
          {!this.state.searching && this.recipes().map((property) => {
            return <TouchableHighlight key={property.id}  style={styles.searchButton} onPress={ () => this.props.navigate({ key: 'Detail', id: property.id}) }>
-           <View>
-              <Text style={styles.resultText}>{property.title}</Text>
-              <Text style={styles.resultText}>{property.nbLocality}</Text>
-             <Image source={ {uri: "http://d3snwcirvb4r88.cloudfront.net/" + "static/img/nopic_1bhk.jpg"} } style={styles.resultImage} />
-           </View>
+           <View><PropertyListItem propertyData={property} /></View>
          </TouchableHighlight>
          })}
          {this.state.searching ? <Text>Searching...</Text> : null }
        </ScrollView>
-
       </View>
     )
   }
@@ -105,14 +97,14 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
   searchSection: {
-    height: 30,
-    flexDirection: 'row',
+    // height: 30,
+    // flexDirection: 'row',
     borderBottomColor: '#000',
     borderBottomWidth: 1,
     padding: 5,
   },
   scrollSection: {
-    flex: 0.8
+    // flex: 0.8
   },
   searchButton: {
     flex: 0.3,

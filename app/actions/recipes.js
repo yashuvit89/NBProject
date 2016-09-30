@@ -17,7 +17,8 @@ import Api from '../lib/api'
 //   }
 // }
 
-export function fetchRecipes() {
+export function fetchRecipes(locationData) {
+  console.log("Inside fetch",locationData);
   return (dispatch, getState) => {
     const params = [
       'ageNo=1',
@@ -25,13 +26,15 @@ export function fetchRecipes() {
       'rent=0,2000000',
       'orderBy=nbRank,desc',
       'city=bangalore',
-      'latitude=12.9279232',
-      'longitude=77.62710779999998',
-      'placeId=ChIJLfyY2E4UrjsRVq4AjI7zgRY',
-      'lat_lng=12.9279232,77.62710779999998',
+      'latitude='+locationData.geometry.location.lat,
+      'longitude='+locationData.geometry.location.lng,
+      'placeId='+locationData.place_id,
+      'lat_lng='+locationData.geometry.location.lat+','+locationData.geometry.location.lng,
       'sharedAccomodation=0'
     ].join('&')
-    return Api.get(`/api/v1/property/filter/region/ChIJLfyY2E4UrjsRVq4AjI7zgRY/?${params}`).then(resp => {
+    // console.log('Params',params)
+    const placeId = locationData.place_id;
+    return Api.get(`/api/v1/property/filter/region/${placeId}/?${params}`).then(resp => {
       // console.log("Inside fetch done", resp);
       dispatch(setSearchedRecipes({recipes: resp}));
     }).catch( (ex) => {

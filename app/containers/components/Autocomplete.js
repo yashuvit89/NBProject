@@ -4,23 +4,11 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 // var {GooglePlacesAutocomplete} = require('react-native-google-places-autocomplete');
 
 export default class AutoComplete extends Component {
-  searchPressed(locationData) {
-    console.log("Search Pressed");
-    // this.props.fetchRecipes('bacon, cucumber, bannana');
-
-    this.setState({ searching: true })
-    this.props.fetchRecipes(locationData).then( (res) => {
-      this.setState({searching: false })
-    });
-  }
-
   render() {
-    // console.log("Inside AutoComplete props", this.props);
     // const homePlace = {description: 'Home', geometry: { location: { lat: 48.8152937, lng: 2.4597668 } }};
     // const workPlace = {description: 'Work', geometry: { location: { lat: 48.8496818, lng: 2.2940881 } }};
     return (
       <GooglePlacesAutocomplete
-
         placeholder='Search'
         minLength={3} // minimum length of text to search
         autoFocus={false}
@@ -28,9 +16,7 @@ export default class AutoComplete extends Component {
         fetchDetails={true}
         onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
           console.log(data);
-          // console.log(details);
-          // console.log(this.props);
-          this.searchPressed(details);
+          console.log(details);
         }}
         getDefaultValue={() => {
           return ''; // text input default value
@@ -44,18 +30,6 @@ export default class AutoComplete extends Component {
           // types: '(cities)', // default: 'geocode'
         }}
         styles={{
-          poweredContainer: {
-            flex: 0,
-          },
-          listView: {
-            zIndex: 10,
-          },
-          powered: {
-            height: 0,
-          },
-          poweredContainer: {
-            height: 0,
-          },
           description: {
             fontWeight: 'bold',
           },
@@ -63,6 +37,7 @@ export default class AutoComplete extends Component {
             color: '#1faadb',
           },
         }}
+
         currentLocation={false} // Will add a 'Current location' button at the top of the predefined places list
         currentLocationLabel="Current location"
         nearbyPlacesAPI='GooglePlacesSearch' // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch

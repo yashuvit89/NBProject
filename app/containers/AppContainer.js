@@ -44,23 +44,11 @@ class AppContainer extends Component {
 
   render() {
    return (
-    //  <Home {...this.props} />
-    //  <View>
-    //    <Text style={{marginTop: 20}}>
-    //      Enter Location
-    //    </Text>
-    //    <AutoComplete />
-    //    <Text style={{marginTop: 20}}>
-    //      Inside App container! Recipe Count: {this.props.recipeCount}
-    //    </Text>
-    //    <TouchableHighlight onPress={() => {this.addRecipe() }}>
-    //      <Text>Add recipe</Text>
-    //    </TouchableHighlight>
-    //  </View>
       <NavigationTransitioner
         navigationState={this.props.navigationState}
         render={this._render}
       />
+
     );
   }
 
@@ -117,6 +105,9 @@ const styles = StyleSheet.create({
     right: 0,
     top: 0,
   },
+  propertyListItemCard: {
+    backgroundColor: 'grey'
+  }
 });
 
 
