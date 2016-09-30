@@ -13,6 +13,7 @@ import {
 import Home from './Home';
 import Detail from './Detail';
 import ApplicationTabs from './ApplicationTabs';
+import AutoComplete from './components/Autocomplete';
 
 const {
   PropTypes: NavigationPropTypes,
@@ -37,8 +38,9 @@ class AppContainer extends Component {
    return (
      <View>
        <Text style={{marginTop: 20}}>
-         Inside App container!
+         Enter Location
        </Text>
+       <AutoComplete />
      </View>
       // <NavigationTransitioner
       //   navigationState={this.props.navigationState}
