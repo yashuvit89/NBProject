@@ -14,7 +14,7 @@ import {
 import Home from './Home';
 import Detail from './Detail';
 import ApplicationTabs from './ApplicationTabs';
-import AutoComplete from './components/Autocomplete';
+import AutoComplete from './components/Autocomplete1';
 
 const {
   PropTypes: NavigationPropTypes,
