@@ -7,7 +7,8 @@ import {
   Animated,
   StyleSheet,
   View,
-  NavigationExperimental
+  NavigationExperimental,
+  Text,
 } from 'react-native';
 import Home from './Home';
 import Detail from './Detail';
@@ -34,10 +35,15 @@ class AppContainer extends Component {
 
   render() {
    return (
-      <NavigationTransitioner
-        navigationState={this.props.navigationState}
-        render={this._render}
-      />
+     <View>
+       <Text style={{marginTop: 20}}>
+         Inside App container!
+       </Text>
+     </View>
+      // <NavigationTransitioner
+      //   navigationState={this.props.navigationState}
+      //   render={this._render}
+      // />
     );
   }
 

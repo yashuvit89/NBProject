@@ -1,11 +1,8 @@
 import React, {Component} from 'react'
 import {
   AppRegistry,
-  StyleSheet,
-  Text,
-  View
 } from 'react-native';
-// import AppContainer from './app/containers/AppContainer'
+import AppContainer from './app/containers/AppContainer'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, combineReducers, compose} from 'redux'
 import thunkMiddleware from 'redux-thunk'
@@ -27,19 +24,9 @@ function configureStore(initialState) {
 
 const store = configureStore({});
 
-class NBProject extends Component {
-  render() {
-    return (
-      <View>
-        <Text>Hello world</Text>
-      </View>
-    );
-  }
-}
-
 const App = () => (
   <Provider store={store}>
-    <NBProject />
+    <AppContainer />
   </Provider>
 )
 
