@@ -14,3 +14,9 @@ export const searchedRecipes = createReducer({}, {
 //   },
 //
 // });
+
+export function addRecipe() {
+  return {
+    type: types.ADD_RECIPE,
+  }
+}

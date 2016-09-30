@@ -9,6 +9,7 @@ import {
   View,
   NavigationExperimental,
   Text,
+  TouchableHighlight,
 } from 'react-native';
 import Home from './Home';
 import Detail from './Detail';
@@ -28,10 +29,22 @@ const {
 
 class AppContainer extends Component {
 
-  constructor(props: any, context: any) {
-    super(props, context);
-    this._render = this._render.bind(this);
-    this._renderScene = this._renderScene.bind(this);
+  // constructor(props: any, context: any) {
+  //   super(props, context);
+  //   this._render = this._render.bind(this);
+  //   this._renderScene = this._renderScene.bind(this);
+  // }
+  constructor(props){
+    super(props);
+    this.state = { recipeCount: 0 }
+  }
+
+  incrementRecipeCount() {
+    this.setState({recipeCount: this.state.recipeCount+1});
+  }
+
+  addRecipe() {
+    this.props.addRecipe();
   }
 
   render() {
@@ -41,6 +54,12 @@ class AppContainer extends Component {
          Enter Location
        </Text>
        <AutoComplete />
+       <Text style={{marginTop: 20}}>
+         Inside App container! Recipe Count: {this.state.recipeCount}
+       </Text>
+       <TouchableHighlight onPress={() => {this.addRecipe() }}>
+         <Text>Add recipe</Text>
+       </TouchableHighlight>
      </View>
       // <NavigationTransitioner
       //   navigationState={this.props.navigationState}
