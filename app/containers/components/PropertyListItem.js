@@ -13,7 +13,7 @@ export default class PropertyListItem extends Component {
 			</PropertyListItemHeader>
 			<Image style={styles.propertyImg} source={{uri: 'http://beta.nobroker.in/static/img/resale/1bhk.jpg'}}/>
 			<PropertyListItemFooter>
-				<View><Text style={styles.flex1}> Rs. {this.props.propertyData.rent} </Text></View>
+				<View><Text style={styles.flex1, styles.rightBorder}> Rs. {this.props.propertyData.rent} </Text></View>
 				<View><Text style={styles.flex1}> {this.props.propertyData.furnishingDesc} Furnished </Text></View>
 			</PropertyListItemFooter>
 		</View>
@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
   propertyTitle: {
   	fontSize: 15,
   	marginBottom: 5,
+    fontWeight: '500',
   },
   propertySubTitle: {
   	fontSize: 13, 

@@ -44,17 +44,20 @@ export default class AutoComplete extends Component {
           // types: '(cities)', // default: 'geocode'
         }}
         styles={{
+          container: {
+            flex: 0.1,
+          },
           poweredContainer: {
             flex: 0,
-          },
-          listView: {
-            zIndex: 10,
+            height: 0,
           },
           powered: {
+            flex: 0,
             height: 0,
           },
-          poweredContainer: {
-            height: 0,
+          listView: {
+            zIndex: 2,
+            position: 'absolute',
           },
           description: {
             fontWeight: 'bold',

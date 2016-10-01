@@ -102,12 +102,13 @@ const styles = StyleSheet.create({
     borderBottomColor: '#000',
     borderBottomWidth: 1,
     padding: 5,
+    flex: 0.1,
   },
   scrollSection: {
     // flex: 0.8
   },
   searchButton: {
-    flex: 0.3,
+    // flex: 0.3,
   },
   searchInput: {
     flex: 0.7,
