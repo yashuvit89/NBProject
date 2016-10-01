@@ -42,9 +42,9 @@ class Home extends Component {
     location.pageNo = location.pageNo + 1;
     this.props.addLocation(location);
 
-    this.setState({ searching: true })
+    // this.setState({ searching: true })
     this.props.fetchRecipes(location).then( (res) => {
-      this.setState({searching: false })
+      // this.setState({searching: false })
     });
   }
 
@@ -58,9 +58,8 @@ class Home extends Component {
            <View><PropertyListItem propertyData={property} /></View>
          </TouchableHighlight>
          })}
-         {this.state.searching ? <Text>Searching...</Text> : null }
          {Object.keys(this.props.searchedRecipes).length > 0 ? <TouchableHighlight style={styles.searchButton} onPress={ () => this.getNextPage()}>
-            <View>
+            <View style={styles.showMore}>
              <Text style={styles.resultText}>Show more</Text>
             </View>
           </TouchableHighlight> : null }
@@ -139,6 +138,12 @@ const styles = StyleSheet.create({
     // backgroundColor: '#000',
     // color: '#FFF',
     height: 20,
+  },
+  showMore: {
+    // flex: 1,
+    padding: 10,
+    backgroundColor: '#ddd',
+    alignItems: 'center',
   }
 });
 

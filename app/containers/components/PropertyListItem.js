@@ -29,10 +29,15 @@ export default class PropertyListItem extends Component {
 const styles = StyleSheet.create({
   propertyListItemCard: {
     alignItems: 'stretch',
-    // shadowColor: 'black',
-    // shadowRadius: 3,
-    // shadowOpacity: 0.3,
+    shadowColor: 'black',
+    shadowOffset: {
+      height: 1,
+      width: 0
+    },
+    shadowRadius: 5,
+    shadowOpacity: 0.3,
     marginVertical: 20,
+
   },
   propertyTitle: {
   	fontSize: 15,

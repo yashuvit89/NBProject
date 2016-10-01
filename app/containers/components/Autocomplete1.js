@@ -21,7 +21,7 @@ export default class AutoComplete extends Component {
     return (
       <GooglePlacesAutocomplete
 
-        placeholder='Search'
+        placeholder='Enter locality to search'
         minLength={3} // minimum length of text to search
         autoFocus={false}
         listViewDisplayed='auto'    // true/false/undefined
