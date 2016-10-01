@@ -4,13 +4,17 @@ import * as types from '../actions/types'
 // export const searchedRecipes = createReducer({}, {
 // });
 export const searchedRecipes = createReducer({}, {
-  [types.SET_SEARCHED_RECIPES](state, action) {
-    let newState = {}
+  [types.SET_SEARCHED_RECIPES](state = {}, action) {
+    // let newState = {}
     action.recipes.data.forEach( (recipe) => {
       let id = recipe.id
-      newState[id] = Object.assign({}, recipe, { id });
+      state[id] = Object.assign({}, recipe, { id });
     });
-    return newState;
+
+    console.log("State length", Object.keys(state).length);
+
+    return state;
+    // return newState;
   },
 
 });
@@ -22,4 +26,13 @@ export const recipeCount  = createReducer(0, {
   [types.SET_SEARCHED_RECIPES](state, action) {
     return action.recipes.data.length;
   }
+});
+
+export const location = createReducer({}, {
+  [types.ADD_LOCATION](state, action){
+    console.log("Add location reducer", state);
+    console.log("Location action", action);
+    return Object.assign({}, state, action.location);
+    // return state;
+  },
 });

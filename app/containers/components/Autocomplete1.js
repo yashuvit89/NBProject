@@ -6,7 +6,7 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 export default class AutoComplete extends Component {
   searchPressed(locationData) {
     console.log("Search Pressed");
-    // this.props.fetchRecipes('bacon, cucumber, bannana');
+    this.props.addLocation(locationData);
 
     this.setState({ searching: true })
     this.props.fetchRecipes(locationData).then( (res) => {
@@ -30,6 +30,7 @@ export default class AutoComplete extends Component {
           console.log(data);
           // console.log(details);
           // console.log(this.props);
+          details.pageNo = 1;
           this.searchPressed(details);
         }}
         getDefaultValue={() => {

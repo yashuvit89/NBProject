@@ -19,9 +19,10 @@ import Api from '../lib/api'
 
 export function fetchRecipes(locationData) {
   console.log("Inside fetch",locationData);
+  addLocation(locationData);
   return (dispatch, getState) => {
     const params = [
-      'ageNo=1',
+      'pageNo='+locationData.pageNo,
       'radius=1',
       'rent=0,2000000',
       'orderBy=nbRank,desc',
@@ -32,6 +33,7 @@ export function fetchRecipes(locationData) {
       'lat_lng='+locationData.geometry.location.lat+','+locationData.geometry.location.lng,
       'sharedAccomodation=0'
     ].join('&')
+
     // console.log('Params',params)
     const placeId = locationData.place_id;
     return Api.get(`/api/v1/property/filter/region/${placeId}/?${params}`).then(resp => {
@@ -54,5 +56,12 @@ export function setSearchedRecipes({ recipes }) {
 export function addRecipe() {
   return {
     type: types.ADD_RECIPE,
+  }
+}
+
+export function addLocation(location) {
+  return {
+    type: types.ADD_LOCATION,
+    location
   }
 }

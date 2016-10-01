@@ -5,13 +5,18 @@ import PropertyListItemFooter from './PropertyListItemFooter'
 
 export default class PropertyListItem extends Component {
   render() {
+    const imageUri = "http://d3snwcirvb4r88.cloudfront.net/";
+    const noPicUri = imageUri + "static/img/nopic_1bhk.jpg";
+
+    const propertyImageUri = this.props.propertyData.photos.length > 0 ? imageUri + "images/" +
+      this.props.propertyData.id + "/" +this.props.propertyData.photos[0].imagesMap.medium : noPicUri;
     return (
 		<View style={styles.propertyListItemCard}>
-			<PropertyListItemHeader>	
+			<PropertyListItemHeader>
 				<Text classname='title' style={styles.propertyTitle}> {this.props.propertyData.title}</Text>
 				<Text classname='subTitle' style={styles.propertySubTitle}>{this.props.propertyData.secondaryTitle} </Text>
 			</PropertyListItemHeader>
-			<Image style={styles.propertyImg} source={{uri: 'http://beta.nobroker.in/static/img/resale/1bhk.jpg'}}/>
+			<Image style={styles.propertyImg} source={{uri: propertyImageUri}}/>
 			<PropertyListItemFooter>
 				<View><Text style={styles.flex1, styles.rightBorder}> Rs. {this.props.propertyData.rent} </Text></View>
 				<View><Text style={styles.flex1}> {this.props.propertyData.furnishingDesc} Furnished </Text></View>
@@ -35,7 +40,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   propertySubTitle: {
-  	fontSize: 13, 
+  	fontSize: 13,
   	paddingLeft: 5,
   },
   flex1: {

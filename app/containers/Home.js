@@ -24,14 +24,28 @@ class Home extends Component {
     // console.log("Search Pressed");
     // this.props.fetchRecipes('bacon, cucumber, bannana');
 
-    this.setState({ searching: true })
-    this.props.fetchRecipes(this.state.ingredientsInput).then( (res) => {
-      this.setState({searching: false })
-    });
+    // this.setState({ searching: true })
+    // this.props.fetchRecipes(this.state.ingredientsInput).then( (res) => {
+    //   this.setState({searching: false })
+    // });
   }
 
   recipes() {
     return Object.keys(this.props.searchedRecipes).map(key => this.props.searchedRecipes[key])
+  }
+
+  getNextPage() {
+    console.log("Inside next page");
+
+    console.log("Search Pressed");
+    var location = this.props.location;
+    location.pageNo = location.pageNo + 1;
+    this.props.addLocation(location);
+
+    this.setState({ searching: true })
+    this.props.fetchRecipes(location).then( (res) => {
+      this.setState({searching: false })
+    });
   }
 
   render() {
@@ -45,6 +59,11 @@ class Home extends Component {
          </TouchableHighlight>
          })}
          {this.state.searching ? <Text>Searching...</Text> : null }
+         {Object.keys(this.props.searchedRecipes).length > 0 ? <TouchableHighlight style={styles.searchButton} onPress={ () => this.getNextPage()}>
+            <View>
+             <Text style={styles.resultText}>Show more</Text>
+            </View>
+          </TouchableHighlight> : null }
        </ScrollView>
       </View>
     )
@@ -125,7 +144,8 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
   return {
-    searchedRecipes: state.searchedRecipes
+    searchedRecipes: state.searchedRecipes,
+    location: state.location
   };
 }
 

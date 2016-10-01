@@ -29,21 +29,21 @@ class ApplicationTabs extends Component {
     return (
       <TabBarIOS style={{flex: 1}} >
         <TabBarIOS.Item
-          systemIcon="favorites"
+          systemIcon="search"
           iconSize={25}
           onPress={() => { return this.onPress(0) } }
-          selectedIconName="favorites"
+          selectedIconName="search"
           selected={this.props.tabs.index === 0}>
             { this.renderScene(Home) }
         </TabBarIOS.Item>
-        <TabBarIOS.Item
+        {/* <TabBarIOS.Item
           systemIcon="more"
           iconSize={25}
           onPress={() => { return this.onPress(1) } }
           selectedIconName="more"
           selected={this.props.tabs.index === 1}>
             { this.renderScene(About) }
-        </TabBarIOS.Item>
+        </TabBarIOS.Item> */}
       </TabBarIOS>
     );
   }

@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { ActionCreators } from '../actions';
 import { bindActionCreators } from 'redux';
 import { appStyle } from '../styles';
+import PropertyListItem from './components/PropertyListItem';
+
 import {
   View,
   Image,
@@ -26,9 +28,10 @@ class Detail extends Component {
         <Text style={{ color: '#FFF' } }>Go Back</Text>
       </TouchableHighlight>
       <View>
-        <Image source={ { uri: recipe.thumbnail } } style={appStyle.resultImage} />
-        <Text style={ appStyle.resultText } >{recipe.title}</Text>
-        <Text style={ { fontSize: 21 } } >{recipe.ingredients}</Text>
+        <View><PropertyListItem propertyData={recipe} /></View>
+        {/* <Image source={ { uri: recipe.thumbnail } } style={appStyle.resultImage} /> */}
+        {/* <Text style={ appStyle.resultText } >{recipe.title}</Text>
+        <Text style={ { fontSize: 21 } } >{recipe.ingredients}</Text> */}
       </View>
     </View>
   }

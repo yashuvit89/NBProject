@@ -9,3 +9,7 @@ export const NAVIGATION_BACK = 'NAVIGATION_BACK'
 
 
 export const ADD_RECIPE = 'ADD_RECIPE';
+
+export const ADD_LOCATION = 'ADD_LOCATION';
+
+export const ADD_SEARCH_CONFIG = 'ADD_SEARCH_CONFIG';
