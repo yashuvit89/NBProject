@@ -1,3 +1,3 @@
 # NBProject
 
-Simple list page in react-native
+Simple list page in react-native app
